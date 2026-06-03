@@ -3,11 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todos os Itens</title>
-    <script src="script.js"></script>
+    <title>Catedrais</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
+<body onload="carregaCards()">
+    <header>
+        <div class="containerCabeca">
+            <div id="logoImagem">
+                <img src="images/rosacea.png" alt="">
+                <h6>Catedrais Pelo Mundo</h6>
+            </div>
+            <div id="menu" class="d-none d-sm-block">
+                <ul>
+                    <a href="#secaoCards"><li>Ver catedrais</li></a>
+                    <a href="#sobreConteudo"><li>Informações do autor</li></a>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="row">
+            <div id="areaCards" class="col-12 col-xl-10">
+                <section id="secaoCards" class="row">
+                    <h3 class="col-12">Catedrais</h3>      
+                </section>
+            </div>
+            <div id="textoCatedral" class="col-12 col-xl-2">
+                <h4 class="d-inline">As Catedrais</h4>
+                <p class="d-inline">são as principais Igrejas das Dioceses, em outras palavras, são as principais de um grupo de Igrejas próximas geograficamente, e abrigam a <strong>Cátedra do Bispo</strong>, que é a cadeira de onde o Bispo governa a sua Diocese pela autoridade da susseção apostólica.</p>
+                <br><br>
+                <p>Este site contém uma curta lista de algumas Catedrais distribuídas pelo mundo, belíssimas e impressionantes amostras do resultado do trabalho humano e da grandiosidade das obras da Igreja.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="containerFooter">
+            <div id="sobreConteudo">
+                <h5>Sobre</h5>
+                <p>O site cobre uma curta lista de Catedrais Católicas ao redor do mundo, dádivas do esforço humano e maravilhas da arte.</p>
+            </div>
+            <div id="sobreAutor">
+                <h5>Autor</h5>
+                <p>Vítor Caitano de Morais
+                <a href="https://github.com/Vitor-Caitano" target="_blank"><img class="d-inline" src="images/github.png" alt=""></a>
+                <p>Aluno de Analise e Desenvolvimento de Sistemas - PUC Minas</p>
+            </div>
+        </div>
+    </footer>
     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script>
+        carregaCards = () => {
+            const catalogo = document.getElementById('secaoCards');
+
+            for (let i = 0; i < data.catedrais.length; i++)
+            {
+                catalogo.innerHTML += `
+                    <div class="card mb-3 col-12 col-md-5 col-xl-6 p-0 my-2 mx-3" style="max-width: 550px;">
+                        <a href="detalhes.html?id=${data.catedrais[i].id}">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <img src="${data.catedrais[i].imagem}" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${data.catedrais[i].nome}</h5>
+                                        <p class="card-text">Catedral de estilo ${data.catedrais[i].estilo} do ano ${data.catedrais[i].ano}.</p>
+                                        <p class="card-text"><small>${data.catedrais[i].cidade} - ${data.catedrais[i].pais}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `
+            }
+        }
+    </script>
 </body>
 </html>

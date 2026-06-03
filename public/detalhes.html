@@ -3,9 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhe do Item</title>
+    <title>Detalhes da Catedral</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body>
+<body onload="carregaDados()">
+    <header>
+        <div class="containerCabeca">
+            <a href="index.html">
+                <div id="logoImagem">
+                    <img src="images/rosacea.png" alt="">
+                    <h6>Catedrais Pelo Mundo</h6>
+                </div>
+            </a>
+            <div id="menu" class="d-none d-sm-block">
+                <ul>
+                    <a href="index.html"><li>Ver catedrais</li></a>
+                    <a href="#sobreConteudo"><li>Informações do autor</li></a>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="containerDetalhes">
+            <div id="imagemCatedral">
+            </div>
+            <div id="dadosCatedral">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="containerFooter">
+            <div id="sobreConteudo">
+                <h5>Sobre</h5>
+                <p>O site cobre uma curta lista de Catedrais Católicas ao redor do mundo, dádivas do esforço humano e maravilhas da arte.</p>
+            </div>
+            <div id="sobreAutor">
+                <h5>Autor</h5>
+                <p>Vítor Caitano de Morais
+                <a href="https://github.com/Vitor-Caitano" target="_blank"><img class="display-inline" src="images/github.png" alt=""></a>
+                <p>Aluno de Análise e Desenvolvimento de Sistemas - PUC Minas</p>
+            </div>
+        </div>
+    </footer>
     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script>
+        carregaDados = () => {
+            let params = new URLSearchParams(location.search);
+            let idCatedral = params.get('id');
+            let catedral = data.catedrais.find((item) => {
+                return (item.id == idCatedral);
+            })
+
+            if(catedral.patrimonioUnesco === true)
+            {
+                document.getElementById('dadosCatedral').innerHTML = `
+                    <h4>Informações Gerais</h4>
+                    <p>${catedral.descricao}</p>
+                    <br>
+                    <p>Estilo arquitetônico: ${catedral.estilo}</p>
+                    <br>
+                    <p>Patrimônio Cultural da UNESCO</P>
+                `
+            }
+
+            else
+            {
+                document.getElementById('dadosCatedral').innerHTML = `
+                    <h4>Informações Gerais</h4>
+                    <p>${catedral.descricao}</p>
+                    <br>
+                    <p>Estilo arquitetônico: ${catedral.estilo}</p>
+                `                
+            }
+
+            document.getElementById('imagemCatedral').innerHTML = `
+                <h4>${catedral.nome} (${catedral.ano})</h4>
+                <h6>${catedral.cidade} - ${catedral.pais}</h6>
+                <img src="${catedral.imagem}" alt="">
+            `
+        }
+    </script>
 </body>
 </html>
